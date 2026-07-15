@@ -1,0 +1,12 @@
+{
+  "name": "tessamorigami",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Five interactive studies in geometry, motion, dimensional projection, and sound.",
+  "scripts": {
+    "dev": "python3 -m http.server 4174",
+    "start": "python3 -m http.server 4174",
+    "check": "node --check app.js && node --check study-shared.js && node --check 02-lattice.js && node --check 03-hyperplane.js && node --check 04-gravity.js && node --check 05-stretch.js"
+  }
+}

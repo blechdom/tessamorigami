@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1eee6" />
+    <meta
+      name="description"
+      content="Tessamorigami Study 04 — a spring lattice whose strain, motion, and collisions become sound."
+    />
+    <title>Tessamorigami 04 — Gravity Field</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="studies.css" />
+  </head>
+  <body class="study-body" style="--study-accent: var(--yellow)">
+    <header class="study-header">
+      <a class="logo" href="index.html" aria-label="Tessamorigami home">
+        <svg viewBox="0 0 38 32" aria-hidden="true"><path d="M2 27 13 4l8 13L36 7 25 29 2 27Z"/><path d="m13 4 12 25M21 17l15-10M2 27l19-10"/></svg>
+        <span>tessamorigami</span>
+      </a>
+      <nav class="study-nav" aria-label="Studies">
+        <a href="index.html">01 seed</a>
+        <a href="02-lattice.html">02 lattice</a>
+        <a href="03-hyperplane.html">03 4D section</a>
+        <a href="04-gravity.html" aria-current="page">04 gravity</a>
+        <a href="05-stretch.html">05 stretch</a>
+      </nav>
+      <button class="plain-button" id="resetField">reset <span>↺</span></button>
+    </header>
+
+    <main class="study-main">
+      <section class="study-intro" aria-labelledby="studyTitle">
+        <div>
+          <p class="chapter"><span>04</span> GRAVITY / TENSION / IMPACT</p>
+          <h1 id="studyTitle">Give the lattice weight.<br /><em>Hear where it strains.</em></h1>
+        </div>
+        <p class="study-intro-note">
+          A sheet of linked particles falls, stretches, and collides. Pull any node: the sound follows the forces actually moving through the mesh.
+        </p>
+      </section>
+
+      <section class="study-stage" aria-label="Interactive spring lattice">
+        <canvas id="gravityCanvas" aria-label="A draggable cloth lattice responding to gravity, wind, and a floor"></canvas>
+        <div class="study-stage-meta" aria-hidden="true">
+          <span>FIXED TOP EDGE · SPRING LATTICE</span>
+          <span id="stageHint">DRAG A NODE · RELEASE TO THROW</span>
+        </div>
+        <div class="first-instruction" id="dragInstruction">pull the sheet, then let go</div>
+        <div class="study-stage-readout" id="fieldReadout" aria-live="polite">
+          PEAK STRAIN 0.0% · MOTION 0 · CONTACTS 0
+        </div>
+        <button class="transport" id="transport">
+          <span class="transport-icon">▶</span>
+          <span><b>drop the field</b><small>audio and gravity start here</small></span>
+        </button>
+      </section>
+
+      <section class="study-panel" aria-label="Gravity field controls">
+        <div class="study-panel-head">
+          <span>THE PHYSICAL FIELD</span>
+          <span>FORCE → MOTION → SOUND</span>
+        </div>
+        <div class="study-control-grid">
+          <label class="study-control">
+            <span><b>gravity direction</b><output id="gravityAngleOut">90° down</output></span>
+            <input id="gravityAngle" type="range" min="-180" max="180" step="1" value="90" />
+          </label>
+          <label class="study-control">
+            <span><b>gravity strength</b><output id="gravityOut">0.75 g</output></span>
+            <input id="gravity" type="range" min="0" max="1.6" step="0.01" value="0.75" />
+          </label>
+          <label class="study-control">
+            <span><b>spring stiffness</b><output id="stiffnessOut">82%</output></span>
+            <input id="stiffness" type="range" min="0.08" max="0.98" step="0.01" value="0.82" />
+          </label>
+          <label class="study-control">
+            <span><b>damping</b><output id="dampingOut">1.8%</output></span>
+            <input id="damping" type="range" min="0.002" max="0.08" step="0.001" value="0.018" />
+          </label>
+          <label class="study-control">
+            <span><b>wind</b><output id="windOut">still</output></span>
+            <input id="wind" type="range" min="-1" max="1" step="0.01" value="0" />
+          </label>
+          <label class="study-control">
+            <span><b>turbulence</b><output id="turbulenceOut">12%</output></span>
+            <input id="turbulence" type="range" min="0" max="1" step="0.01" value="0.12" />
+          </label>
+          <label class="study-control">
+            <span><b>lattice resolution</b><output id="resolutionOut">12 × 8</output></span>
+            <input id="resolution" type="range" min="7" max="18" step="1" value="12" />
+          </label>
+          <label class="study-control">
+            <span><b>time</b><output id="speedOut">1.00×</output></span>
+            <input id="speed" type="range" min="0.2" max="2" step="0.01" value="1" />
+          </label>
+        </div>
+      </section>
+
+      <section class="study-notes">
+        <div>
+          <p class="chapter"><span>THE SOUND</span></p>
+          <h2>No hidden<br />playhead.</h2>
+        </div>
+        <div class="study-notes-copy">
+          <p>
+            Every audible voice is attached to a real node. The most strained and fastest-moving nodes rise out of the field; their horizontal positions set stereo placement and their heights set pitch. Floor impacts create short plucks at the point of contact.
+          </p>
+          <p>
+            Gravity, stiffness, damping, and wind change both the geometry and the sound because there is only one underlying simulation. Pull slowly to expose tension. Flick a node to send a visible and audible wave across the lattice.
+          </p>
+          <div class="study-key" aria-label="Sonification key">
+            <span><b>STRAIN</b>brightness + voice level</span>
+            <span><b>POSITION / SPEED</b>pitch + stereo activity</span>
+            <span><b>COLLISION</b>short spatial pluck</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>TESSAMORIGAMI / STUDY 004</span><span>HEADPHONES RECOMMENDED ◉</span></footer>
+
+    <script type="module" src="04-gravity.js"></script>
+  </body>
+</html>

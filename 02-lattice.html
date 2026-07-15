@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1eee6" />
+    <meta
+      name="description"
+      content="Tessamorigami study 02 — scan an isohedral lattice and hear every boundary the line meets."
+    />
+    <title>Tessamorigami 02 — The lattice line</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="studies.css" />
+  </head>
+  <body class="study-body" style="--study-accent: var(--blue)">
+    <header class="study-header">
+      <a class="logo" href="index.html" aria-label="Tessamorigami study 01">
+        <svg viewBox="0 0 38 32" aria-hidden="true"><path d="M2 27 13 4l8 13L36 7 25 29 2 27Z"/><path d="m13 4 12 25M21 17l15-10M2 27l19-10"/></svg>
+        <span>tessamorigami</span>
+      </a>
+      <nav class="study-nav" aria-label="Studies">
+        <a href="index.html">01 seed</a>
+        <a href="02-lattice.html" aria-current="page">02 lattice</a>
+        <a href="03-hyperplane.html">03 4D section</a>
+        <a href="04-gravity.html">04 gravity</a>
+        <a href="05-stretch.html">05 stretch</a>
+      </nav>
+      <button class="plain-button" id="aboutOpen">field notes <span>↗</span></button>
+    </header>
+
+    <main class="study-main">
+      <section class="study-intro" aria-labelledby="studyTitle">
+        <div>
+          <p class="chapter"><span>02</span> LATTICE / LINE / CONTACT</p>
+          <h1 id="studyTitle">One line.<br /><em>Every crossing.</em></h1>
+        </div>
+        <p class="study-intro-note">
+          The repeated tiles are one continuous lattice. A line moves through the field; every dot is a unique place where it meets a tile boundary. Move or rotate the line to change the chord.
+        </p>
+      </section>
+
+      <section class="study-stage" aria-label="Interactive isohedral lattice scan">
+        <canvas
+          id="latticeCanvas"
+          tabindex="0"
+          aria-label="An isohedral tile field crossed by a draggable scan line. Boundary intersections generate sound."
+        ></canvas>
+        <div class="study-stage-meta" aria-hidden="true">
+          <span id="fieldState">IH39 · BUILDING FIELD</span>
+          <span id="scanState">SCAN 22°</span>
+        </div>
+        <div class="first-instruction" id="firstInstruction">drag across the field to place the line</div>
+        <button class="transport" id="transport">
+          <span class="transport-icon">▶</span>
+          <span><b>scan the lattice</b><small>audio starts here</small></span>
+        </button>
+        <div class="study-stage-readout" id="contactReadout" aria-live="polite">
+          0 CONTACTS · 0 VOICES
+        </div>
+        <div class="timeline" aria-hidden="true"><i id="timelineFill"></i><span id="timelineHead"></span></div>
+      </section>
+
+      <section class="study-panel" aria-label="Lattice and scan controls">
+        <div class="study-panel-head">
+          <span>THE LATTICE SCANNER</span>
+          <span id="modeReadout">LINE = PLAYHEAD</span>
+        </div>
+        <div class="study-control-grid">
+          <label class="study-control">
+            <span><b>form / type</b><output id="formOut">square · IH39</output></span>
+            <input id="form" type="range" min="0" max="3" step="1" value="1" />
+          </label>
+          <label class="study-control">
+            <span><b>curvature</b><output id="curvatureOut">straight</output></span>
+            <input id="curvature" type="range" min="-1" max="1" step="0.001" value="0" />
+          </label>
+          <label class="study-control">
+            <span><b>tile density</b><output id="densityOut">—</output></span>
+            <input id="density" type="range" min="0" max="1" step="0.001" value="0.56" />
+          </label>
+          <label class="study-control">
+            <span><b>field extent</b><output id="extentOut">88%</output></span>
+            <input id="extent" type="range" min="0.2" max="1" step="0.001" value="0.88" />
+          </label>
+          <label class="study-control">
+            <span><b>line angle</b><output id="angleOut">22°</output></span>
+            <input id="angle" type="range" min="0" max="179" step="1" value="22" />
+          </label>
+          <label class="study-control">
+            <span><b>line offset</b><output id="offsetOut">−78%</output></span>
+            <input id="offset" type="range" min="-1" max="1" step="0.001" value="-0.78" />
+          </label>
+          <label class="study-control">
+            <span><b>scan speed</b><output id="speedOut">12.5 s</output></span>
+            <input id="speed" type="range" min="0.03" max="0.5" step="0.001" value="0.16" />
+          </label>
+          <label class="study-control">
+            <span><b>voice cap</b><output id="voiceCapOut">16 voices</output></span>
+            <input id="voiceCap" type="range" min="4" max="24" step="1" value="16" />
+          </label>
+        </div>
+      </section>
+
+      <section class="study-notes" aria-labelledby="notesTitle">
+        <div>
+          <p class="chapter"><span>HOW IT READS</span></p>
+          <h2 id="notesTitle">The line is<br />the playhead.</h2>
+        </div>
+        <div class="study-notes-copy">
+          <p>
+            There is no arbitrary row of moving dots. The line is the only clock. At each instant, the visible dots are the unique intersections between that line and every visible repeated tile boundary. Shared edges and shared vertices are deduplicated before drawing or sounding.
+          </p>
+          <p>
+            Height maps logarithmically to pitch and horizontal position maps to stereo. Edge direction changes tone color. When there are more contacts than the browser should voice clearly, the display still shows every dot while the sound uses an evenly spaced, deterministic subset. The voice cap makes that choice visible and adjustable.
+          </p>
+          <div class="study-key" aria-label="Sonification mapping">
+            <span><b>line position</b>sets the current lattice slice</span>
+            <span><b>contact height</b>maps to logarithmic pitch</span>
+            <span><b>contact x</b>maps left to right in stereo</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>TESSAMORIGAMI / STUDY 002</span><span>HEADPHONES RECOMMENDED ◉</span></footer>
+
+    <dialog id="aboutDialog">
+      <button id="aboutClose" class="dialog-close" aria-label="Close field notes">×</button>
+      <p class="chapter"><span>FIELD NOTES / 02</span></p>
+      <h2>A lattice is one object.</h2>
+      <p>The tiles come from the genuine tactile-js isohedral engine. Curvature changes matching edge pairs, with zero producing exactly straight boundaries. Density changes tile scale; extent changes how much of the field participates.</p>
+      <p>The scanner intersects the actual sampled boundaries rather than placing decorative playheads. Coincident contacts are merged in screen space. If contacts exceed the selected polyphony, evenly distributed points along the line are chosen in a stable order so the sound does not flicker between arbitrary voices.</p>
+      <p>Drag the canvas to place the scan line. Use the arrow keys for fine offset and angle changes. Sound is synthesized live and begins only after pressing the transport.</p>
+    </dialog>
+
+    <script type="module" src="02-lattice.js"></script>
+  </body>
+</html>

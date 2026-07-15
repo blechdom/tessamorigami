@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1eee6" />
+    <meta name="description" content="Tessamorigami — press the shape, then fold what you hear." />
+    <title>Tessamorigami — a folding score</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="logo" href="#top" aria-label="Tessamorigami home">
+        <svg viewBox="0 0 38 32" aria-hidden="true"><path d="M2 27 13 4l8 13L36 7 25 29 2 27Z"/><path d="m13 4 12 25M21 17l15-10M2 27l19-10"/></svg>
+        <span>tessamorigami</span>
+      </a>
+      <p class="edition">A FOLDING SCORE<br />FOR IMPOSSIBLE PAPER</p>
+      <button class="plain-button" id="aboutOpen">field notes <span>↗</span></button>
+    </header>
+
+    <nav class="series-nav" aria-label="Tessamorigami studies">
+      <span>STUDIES</span>
+      <a href="index.html" aria-current="page">01 seed</a>
+      <a href="02-lattice.html">02 lattice</a>
+      <a href="03-hyperplane.html">03 4D section</a>
+      <a href="04-gravity.html">04 gravity</a>
+      <a href="05-stretch.html">05 stretch</a>
+    </nav>
+
+    <main id="top">
+      <section class="instrument" aria-labelledby="instrumentTitle">
+        <div class="intro-copy">
+          <p class="chapter"><span>01</span> SEED / SURFACE / SHADOW</p>
+          <h1 id="instrumentTitle">Press the shape.<br /><em>Fold what you hear.</em></h1>
+          <p class="intro-note">One outline becomes a rhythm, a field, a solid, then something stranger.</p>
+        </div>
+
+        <div class="paper-stage" id="paperStage">
+          <canvas id="score" aria-label="An interactive shape that repeats, folds, and projects into four dimensions"></canvas>
+          <div class="stage-meta" aria-hidden="true">
+            <span id="stageState">ONE TILE · IH39</span>
+            <span id="stageHint">DRAG A VERTEX</span>
+          </div>
+          <div class="axis-key" id="axisKey" aria-hidden="true"><i class="axis-x"></i>X <i class="axis-y"></i>Y <i class="axis-w"></i>W</div>
+          <div class="first-instruction" id="firstInstruction">press the paper to sound it</div>
+          <button class="transport" id="transport">
+            <span class="transport-icon">▶</span>
+            <span><b>hear the fold</b><small>audio starts here</small></span>
+          </button>
+          <div class="timeline"><i id="timelineFill"></i><span id="timelineHead"></span></div>
+        </div>
+
+        <section class="control-deck" aria-label="Folding controls">
+          <div class="deck-intro">
+            <p>THE FOLDING SEQUENCE</p>
+            <span id="phaseReadout">A — outline</span>
+          </div>
+          <div class="control-grid">
+            <label class="control sides-control">
+              <span><b>form</b><output id="formOut">square</output></span>
+              <input id="form" type="range" min="0" max="3" step="1" value="1" />
+              <small><i>△</i><i>□</i><i>⬠</i><i>⬡</i></small>
+            </label>
+            <label class="control">
+              <span><b>crease</b><output id="creaseOut">18%</output></span>
+              <input id="crease" type="range" min="0" max="1" step="0.001" value="0.18" />
+            </label>
+            <label class="control">
+              <span><b>repeat</b><output id="repeatOut">one</output></span>
+              <input id="repeat" type="range" min="0" max="1" step="0.001" value="0" />
+            </label>
+            <label class="control">
+              <span><b>fold</b><output id="foldOut">flat</output></span>
+              <input id="fold" type="range" min="0" max="1" step="0.001" value="0" />
+            </label>
+            <label class="control">
+              <span><b>beyond</b><output id="beyondOut">2D</output></span>
+              <input id="beyond" type="range" min="0" max="1" step="0.001" value="0" />
+            </label>
+            <label class="control">
+              <span><b>pulse</b><output id="pulseOut">1.00×</output></span>
+              <input id="pulse" type="range" min="0.25" max="3" step="0.01" value="1" />
+            </label>
+          </div>
+        </section>
+      </section>
+
+      <section class="legend" aria-label="How geometry becomes sound">
+        <p class="chapter"><span>02</span> THE SCORE INSIDE THE SHAPE</p>
+        <h2>Geometry does<br />the composing.</h2>
+        <div class="legend-grid">
+          <article><span class="swatch vermilion"></span><p><b>height</b><small>becomes pitch</small></p><i>↕</i></article>
+          <article><span class="swatch cobalt"></span><p><b>edge length</b><small>becomes duration</small></p><i>↔</i></article>
+          <article><span class="swatch saffron"></span><p><b>corner angle</b><small>becomes attack</small></p><i>⌁</i></article>
+          <article><span class="swatch violet"></span><p><b>w depth</b><small>becomes detune</small></p><i>∞</i></article>
+        </div>
+        <p class="credit">Isohedral geometry by tactile-js · sonification adapted from tesselateher · 4D projection after Ciechanowski</p>
+      </section>
+    </main>
+
+    <footer><span>TESSAMORIGAMI / STUDY 001</span><span>HEADPHONES RECOMMENDED ◉</span></footer>
+
+    <dialog id="aboutDialog">
+      <button id="aboutClose" class="dialog-close" aria-label="Close field notes">×</button>
+      <p class="chapter"><span>FIELD NOTES</span></p>
+      <h2>A sheet can be a score.</h2>
+      <p>The moving point reads the perimeter at constant speed. Height changes pitch, edge length controls time, and sharp turns strike harder. Repeat the seed and the same motif becomes a canon.</p>
+      <p>Fold lifts the sheet into depth. Beyond adds a second, displaced solid and connecting edges: the projected shadow of extrusion through a fourth axis. The pale moving section is the part intersecting our current three-dimensional slice.</p>
+      <p>This prototype uses the genuine tactile-js isohedral tiling engine under its BSD 3-Clause license. All sound is synthesized live in the browser.</p>
+    </dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

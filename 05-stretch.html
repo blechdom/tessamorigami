@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1eee6" />
+    <meta
+      name="description"
+      content="Tessamorigami study 05 — stretch, turn, and section an elastic data field."
+    />
+    <title>Tessamorigami 05 — Field loom</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="studies.css" />
+  </head>
+  <body class="study-body" style="--study-accent: var(--violet)">
+    <header class="study-header">
+      <a class="logo" href="index.html" aria-label="Tessamorigami study 01">
+        <svg viewBox="0 0 38 32" aria-hidden="true"><path d="M2 27 13 4l8 13L36 7 25 29 2 27Z"/><path d="m13 4 12 25M21 17l15-10M2 27l19-10"/></svg>
+        <span>tessamorigami</span>
+      </a>
+      <nav class="study-nav" aria-label="Studies">
+        <a href="index.html">01 seed</a>
+        <a href="02-lattice.html">02 lattice</a>
+        <a href="03-hyperplane.html">03 4D section</a>
+        <a href="04-gravity.html">04 gravity</a>
+        <a href="05-stretch.html" aria-current="page">05 stretch</a>
+      </nav>
+      <p class="edition">STUDY 05<br />ELASTIC PROJECTION</p>
+    </header>
+
+    <main class="study-main">
+      <section class="study-intro" aria-labelledby="studyTitle">
+        <div>
+          <p class="chapter"><span>05</span> FIELD / SECTION / LISTENING</p>
+          <h1 id="studyTitle">Stretch a field.<br /><em>Hear its section.</em></h1>
+        </div>
+        <p class="study-intro-note">
+          A deformable lattice is both surface and instrument. Turn it, pull it, and move a plane through it. Every lit point is a real intersection with the field.
+        </p>
+      </section>
+
+      <section class="study-stage" aria-label="Interactive elastic field">
+        <canvas id="field" aria-label="A three-dimensional elastic lattice crossed by a moving section plane"></canvas>
+        <div class="study-stage-meta" aria-hidden="true">
+          <span>ELASTIC FIELD · 30 × 21</span>
+          <span>DRAG THE SURFACE TO MOVE THE FOCUS</span>
+        </div>
+        <div class="study-stage-readout" id="readout" aria-live="polite">
+          0 section points · mean strain 0% · depth spread 0
+        </div>
+        <button class="transport" id="transport">
+          <span class="transport-icon">▶</span>
+          <span><b>listen to the section</b><small>audio starts here</small></span>
+        </button>
+      </section>
+
+      <section class="study-panel" aria-label="Field controls">
+        <div class="study-panel-head"><span>SHAPE THE FIELD, THEN SHAPE THE TRANSLATION</span><span id="modeReadout">VIEW DEPTH → PITCH</span></div>
+        <div class="study-control-grid">
+          <label class="study-control">
+            <span><b>stretch</b><output id="stretchOut">1.15×</output></span>
+            <input id="stretch" type="range" min="0.5" max="2.3" step="0.01" value="1.15" />
+          </label>
+          <label class="study-control">
+            <span><b>twist</b><output id="twistOut">32°</output></span>
+            <input id="twist" type="range" min="-2.1" max="2.1" step="0.01" value="0.56" />
+          </label>
+          <label class="study-control">
+            <span><b>relief</b><output id="reliefOut">0.72</output></span>
+            <input id="relief" type="range" min="0" max="1.5" step="0.01" value="0.72" />
+          </label>
+          <label class="study-control">
+            <span><b>turn</b><output id="turnOut">−22°</output></span>
+            <input id="turn" type="range" min="-180" max="180" step="1" value="-22" />
+          </label>
+
+          <label class="study-control">
+            <span><b>section angle</b><output id="sectionAngleOut">24°</output></span>
+            <input id="sectionAngle" type="range" min="-90" max="90" step="1" value="24" />
+          </label>
+          <label class="study-control">
+            <span><b>focus pull</b><output id="focusOut">+0.52</output></span>
+            <input id="focus" type="range" min="-1" max="1" step="0.01" value="0.52" />
+          </label>
+          <label class="study-control">
+            <span><b>focus size</b><output id="focusSizeOut">0.48</output></span>
+            <input id="focusSize" type="range" min="0.16" max="1" step="0.01" value="0.48" />
+          </label>
+          <label class="study-control">
+            <span><b>scan rate</b><output id="rateOut">0.30×</output></span>
+            <input id="rate" type="range" min="0.03" max="1.4" step="0.01" value="0.30" />
+          </label>
+
+          <label class="study-control">
+            <span><b>active voices</b><output id="voicesOut">20</output></span>
+            <input id="voices" type="range" min="4" max="32" step="1" value="20" />
+          </label>
+          <label class="study-control">
+            <span><b>pitch mapping</b><output id="mappingOut">depth</output></span>
+            <select id="mapping">
+              <option value="depth">view depth</option>
+              <option value="position">field position</option>
+              <option value="strain">local strain</option>
+            </select>
+          </label>
+          <label class="study-control">
+            <span><b>stereo spread</b><output id="spreadOut">78%</output></span>
+            <input id="spread" type="range" min="0" max="1" step="0.01" value="0.78" />
+          </label>
+          <label class="study-control">
+            <span><b>register</b><output id="registerOut">0 oct</output></span>
+            <input id="register" type="range" min="-2" max="2" step="0.05" value="0" />
+          </label>
+        </div>
+      </section>
+
+      <section class="study-notes" aria-labelledby="notesTitle">
+        <div>
+          <p class="chapter"><span>WHY THIS ONE</span></p>
+          <h2 id="notesTitle">One geometry.<br />Three readings.</h2>
+        </div>
+        <div class="study-notes-copy">
+          <p>
+            This study treats the visible surface as data, not decoration. The moving plane cuts the deformed field; the bright contour and its dots are computed from the same intersections that drive the sound. Dragging moves a local deformation through the lattice.
+          </p>
+          <p>
+            The pitch mapping changes which property becomes easiest to hear. <b>View depth</b> makes rotation audible, <b>field position</b> preserves a stable reference while the surface moves, and <b>local strain</b> exposes where the lattice is being stretched. Horizontal projection always controls stereo position.
+          </p>
+          <div class="study-key" aria-label="Translation key">
+            <span><b>lit section</b>geometry selected now</span>
+            <span><b>dot height / depth / strain</b>selectable pitch source</span>
+            <span><b>screen position</b>stereo position</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>TESSAMORIGAMI / STUDY 005</span><span>HEADPHONES RECOMMENDED ◉</span></footer>
+    <script type="module" src="05-stretch.js"></script>
+  </body>
+</html>

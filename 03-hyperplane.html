@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f1eee6" />
+    <meta
+      name="description"
+      content="A two-dimensional plane passes through a four-dimensional hypercube; every boundary intersection is heard at once."
+    />
+    <title>Tessamorigami 03 — Plane / Hypercube</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="studies.css" />
+  </head>
+  <body class="study-body" style="--study-accent: var(--violet)">
+    <header class="study-header">
+      <a class="logo" href="index.html" aria-label="Tessamorigami study 01">
+        <svg viewBox="0 0 38 32" aria-hidden="true"><path d="M2 27 13 4l8 13L36 7 25 29 2 27Z"/><path d="m13 4 12 25M21 17l15-10M2 27l19-10"/></svg>
+        <span>tessamorigami</span>
+      </a>
+      <nav class="study-nav" aria-label="Studies">
+        <a href="index.html">01 seed</a>
+        <a href="02-lattice.html">02 lattice</a>
+        <a href="03-hyperplane.html" aria-current="page">03 4D section</a>
+        <a href="04-gravity.html">04 gravity</a>
+        <a href="05-stretch.html">05 stretch</a>
+      </nav>
+      <p class="edition">PLANE / HYPERCUBE<br />INTERSECTION STUDY</p>
+    </header>
+
+    <main class="study-main">
+      <section class="study-intro" aria-labelledby="studyTitle">
+        <div>
+          <p class="chapter"><span>03</span> PLANE / HYPERCUBE / CONTACT</p>
+          <h1 id="studyTitle">A plane enters<br /><em>four dimensions.</em></h1>
+        </div>
+        <p class="study-intro-note">
+          The violet shape is not a shadow added for effect. It is the exact polygon left where one
+          two-dimensional plane passes through a four-dimensional cube. Every corner sounds at once.
+        </p>
+      </section>
+
+      <section class="study-stage" aria-label="Interactive tesseract plane-section instrument">
+        <canvas
+          id="hyperplaneCanvas"
+          aria-label="A projected four-dimensional hypercube and its intersection with a two-dimensional plane"
+        ></canvas>
+        <div class="study-stage-meta" aria-hidden="true">
+          <span>TRUE 2D PLANE · R⁴</span>
+          <span>DRAG TO ROTATE THE 3D VIEW</span>
+        </div>
+        <p class="study-stage-readout" id="sectionReadout" aria-live="polite">CALCULATING CONTACTS</p>
+        <button class="transport" id="transport" type="button">
+          <span class="transport-icon">▶</span>
+          <span><b>hear every contact</b><small>audio starts here</small></span>
+        </button>
+        <div class="timeline" aria-hidden="true"><i id="timelineFill"></i><span id="timelineHead"></span></div>
+      </section>
+
+      <section class="study-panel" aria-label="Hyperplane controls">
+        <div class="study-panel-head">
+          <span>THE INTERSECTION</span>
+          <span id="topologyReadout">SECTION · —</span>
+        </div>
+        <div class="study-control-grid">
+          <label class="study-control">
+            <span><b>plane offset</b><output id="offsetOut">+0.00</output></span>
+            <input id="offset" type="range" min="-1.6" max="1.6" step="0.001" value="0" />
+          </label>
+          <label class="study-control">
+            <span><b>XW angle</b><output id="xwOut">38°</output></span>
+            <input id="xw" type="range" min="-180" max="180" step="0.1" value="38" />
+          </label>
+          <label class="study-control">
+            <span><b>YW angle</b><output id="ywOut">−27°</output></span>
+            <input id="yw" type="range" min="-180" max="180" step="0.1" value="-27" />
+          </label>
+          <label class="study-control">
+            <span><b>3D view</b><output id="viewOut">24°</output></span>
+            <input id="view" type="range" min="-180" max="180" step="0.1" value="24" />
+          </label>
+          <label class="study-control">
+            <span><b>auto-motion</b><output id="motionOut">drift</output></span>
+            <select id="motion">
+              <option value="drift" selected>drift through the cube</option>
+              <option value="still">hold the plane still</option>
+            </select>
+          </label>
+          <label class="study-control">
+            <span><b>rate</b><output id="rateOut">0.30×</output></span>
+            <input id="rate" type="range" min="0.04" max="1.4" step="0.01" value="0.3" />
+          </label>
+          <label class="study-control">
+            <span><b>pitch spread</b><output id="spreadOut">24 st</output></span>
+            <input id="spread" type="range" min="0" max="48" step="1" value="24" />
+          </label>
+          <label class="study-control">
+            <span><b>spatial depth</b><output id="depthOut">70%</output></span>
+            <input id="depth" type="range" min="0" max="1" step="0.001" value="0.7" />
+          </label>
+        </div>
+      </section>
+
+      <section class="study-notes" aria-labelledby="notesTitle">
+        <div>
+          <p class="chapter"><span>METHOD</span> NO METAPHOR REQUIRED</p>
+          <h2 id="notesTitle">The contacts<br />are the instrument.</h2>
+        </div>
+        <div class="study-notes-copy">
+          <p>
+            The plane is written as <strong>p(u,v) = c + uU + vV</strong>, where every point has X, Y,
+            Z, and W coordinates. Eight inequalities—positive and negative bounds for each of the four
+            axes—clip its initially open surface to the interior of the tesseract.
+          </p>
+          <p>
+            The remaining polygon is the complete plane section. Its corners are places where at least
+            two boundary constraints meet. The wireframe, section, and dots all pass through the same
+            4D-to-3D-to-screen projection; they are three views of one calculation.
+          </p>
+          <p>
+            Each corner drives one quiet oscillator. Position in four dimensions determines pitch,
+            projected horizontal position determines stereo placement, and W depth affects tone color.
+            When the section changes topology, the number of simultaneous voices changes with it.
+          </p>
+          <div class="study-key" aria-label="Drawing key">
+            <span><b>BLACK / BLUE</b>the 32 edges of the tesseract</span>
+            <span><b>VIOLET PLANE</b>the exact clipped 2D section</span>
+            <span><b>CONTACT DOTS</b>all sounding intersection points</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>TESSAMORIGAMI / STUDY 003</span><span>HEADPHONES RECOMMENDED ◉</span></footer>
+
+    <script type="module" src="03-hyperplane.js"></script>
+  </body>
+</html>
